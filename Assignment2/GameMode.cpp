@@ -1,10 +1,13 @@
-#include <GameMode.h>
+#include "GameMode.h"
 
-class GameMode
-{
+  private char** thisGen;
+  private char** nextGen;
+  private int genCount;
 
-  GameMode::GameMode()
+  GameMode::GameMode(char** thisGen)
   {
+    this.thisGen = thisGen;
+    nextGen = new char[thisGen.size()][thisGen[0].size()]
     genCount = 0;
   }
 
@@ -36,5 +39,10 @@ class GameMode
       }
     }
     thisGen =& nextGen;
+    nextGen =& char**;
   }
-}
+
+  bool GameMode::isOccupied(char c)
+  {
+    return c == 'X';
+  }
