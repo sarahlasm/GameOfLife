@@ -64,22 +64,22 @@
     return c == 'X';
   }
 
-  char** getThisGen()
+  char** GameMode::getThisGen()
   {
     return thisGen;
   }
 
-  char** getNextGen()
+  char** GameMode::getNextGen()
   {
     return nextGen;
   }
 
-  int getRows()
+  int GameMode::getRows()
   {
     return rows;
   }
 
-  int getCols()
+  int GameMode::getCols()
   {
     return cols;
   }

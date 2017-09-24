@@ -10,7 +10,6 @@
 
 */
 
-#include "GameMode.h"
 #include "Doughnut.h"
 
 class GameOfLife
