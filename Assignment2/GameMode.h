@@ -21,6 +21,6 @@ class GameMode
     char** thisGen;
     char** nextGen;
     int genCount;
-    // const int ROWS;
-    // const int COLS;
+    int rows;
+    int cols;
 };
