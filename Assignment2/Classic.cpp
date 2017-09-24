@@ -45,6 +45,7 @@ int Classic::checkNeighbors(int row, int col)
     }
   }//end row == 0 check
 
+
   else if (row == GameMode::getRows())
   {
     for (int i = row - 1; i < row + 1; ++i)
