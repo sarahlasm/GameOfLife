@@ -1,5 +1,7 @@
 /** Reads through arrays, checks neighbors, facilitates generation changes,
 */
+#ifndef GAMEMODE_H
+#define GAMEMODE_H
 
 #include <iostream>
 
@@ -24,3 +26,4 @@ class GameMode
     int rows;
     int cols;
 };
+#endif

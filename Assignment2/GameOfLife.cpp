@@ -19,8 +19,8 @@ class GameOfLife
     const int ROWS = 5;
     const int COLS = 6;
 
-    Doughnut d = new Doughnut(ROWS, COLS);
-
+    Doughnut* d = new Doughnut(ROWS, COLS);
+    delete d;
   }
 
 };
