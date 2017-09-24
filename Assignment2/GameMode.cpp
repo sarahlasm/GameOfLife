@@ -83,3 +83,8 @@
   {
     return cols;
   }
+
+    void GameMode::setArray(int row, int col) //Debugging purposes, may be deleted
+    {
+      thisGen[row][col] = 'X';
+    }

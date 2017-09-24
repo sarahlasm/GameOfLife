@@ -1,7 +1,6 @@
 /**
 @TODO
-  Fix error
-  Implement Mirror and Classic modes (does Amanda have that?)
+  Make checkNeighbors() more efficient (at least in Doughnut)
   Fill starting gameboard with random percentage of occupied cells
   Allow person to input their own file
   Kill Sarah
@@ -18,6 +17,10 @@
     const int COLS = 6;
 
     Doughnut* d = new Doughnut(ROWS, COLS);
+
+    (*d).setArray(0, 3);
+    (*d).setArray(1, 5);
+    cout << (*d).checkNeighbors(0, 2);
     delete d;
 
     return 0;

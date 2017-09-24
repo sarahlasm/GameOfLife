@@ -19,6 +19,7 @@ class GameMode
     char** getNextGen();
     int getRows();
     int getCols();
+    void setArray(int row, int col);
   private:
     char** thisGen;
     char** nextGen;

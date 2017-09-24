@@ -1,6 +1,6 @@
 #include "GameMode.h"
 
-class Doughnut : GameMode
+class Doughnut : public GameMode
 {
 private:
 public:
