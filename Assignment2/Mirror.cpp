@@ -30,7 +30,7 @@ int Mirror::checkNeighbors(int row, int col)
         }
      }
   } //end center check
-}
+
 
 else if (row == GameMode::getRows())
 {
