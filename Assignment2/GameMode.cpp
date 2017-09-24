@@ -1,12 +1,17 @@
 #include "GameMode.h"
 
-  private char** thisGen;
-  private char** nextGen;
+  private char thisGen[][];
+  private char nextGen[][];
   private int genCount;
 
-  GameMode::GameMode(char** thisGen)
+  GameMode::GameMode(const int ROWS, const int COLS)
   {
-    this.thisGen = thisGen;
+
+    thisGen = new char*[ROWS];
+    for (int i = 0; i < ROWS; ++i)
+    {
+      thisGen[i] = new char[COLS];
+    }
     nextGen = new char[thisGen.size()][thisGen[0].size()]
     genCount = 0;
   }
@@ -45,4 +50,24 @@
   bool GameMode::isOccupied(char c)
   {
     return c == 'X';
+  }
+
+  char** getThisGen()
+  {
+    return thisGen;
+  }
+
+  char** getNextGen()
+  {
+    return nextGen;
+  }
+
+  int getRows()
+  {
+    return thisGen.size();
+  }
+
+  int getCols()
+  {
+    return thisGen[0].size();
   }

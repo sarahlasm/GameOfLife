@@ -1,7 +1,6 @@
 #include "Doughnut.h"
 
-
-  Doughnut::Doughnut(char thisGen[6][5]):GameMode(thisGen)
+  Doughnut::Doughnut(const int ROWS, const int COLS):GameMode(ROWS, COLS)
   {
   }
 
@@ -12,15 +11,16 @@
 
   int Doughnut::checkNeighbors(int row, int col)
   {
+    char** thisGen = getThisGen();
     int neighborCount = 0;
-    if (row > 0 && row < thisGen.size())
+    if (row > 0 && row < getRows())
     {
         if (isOccupied(thisGen[row-1][col]))
           neighborCount++;
         if (isOccupied(thisGen[row+1][col]))
           neighborCount++;
     }
-    if (col > 0 && col < thisGen[0].size())
+    if (col > 0 && col < getCols())
     {
       if (isOccupied(thisGen[row][col-1]))
         neighborCount++;

@@ -8,13 +8,19 @@ using namespace std;
 class GameMode
 {
   public:
-    GameMode(char thisGen[6][5]);
+    GameMode(const int ROWS, const int COLS);
     ~GameMode();
     virtual int checkNeighbors(int row, int col);
     void changeGrid();
     bool isOccupied(char c);
+    char** getThisGen();
+    char** getNextGen();
+    int getRows();
+    int getCols();
   private:
-    char thisGen[6][5];
-    char nextGen[6][5];
+    char** thisGen;
+    char** nextGen;
     int genCount;
+    // const int ROWS;
+    // const int COLS;
 };
