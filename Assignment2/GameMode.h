@@ -20,6 +20,7 @@ class GameMode
     int getRows();
     int getCols();
     void setArray(int row, int col);
+    void setUpBoard(double popDensity);
   private:
     char** thisGen;
     char** nextGen;

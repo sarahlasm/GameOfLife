@@ -22,6 +22,13 @@
       nextGen[i] = new char[COLS];
     }
     genCount = 0;
+    for (int r = 0; r < rows; ++r)
+    {
+      for (int c = 0; c < cols; ++c)
+      {
+        thisGen[r][c] = '-';
+      }
+    }
   }
 
   GameMode::~GameMode()
@@ -88,3 +95,27 @@
     {
       thisGen[row][col] = 'X';
     }
+
+  void GameMode::setUpBoard(double popDensity)
+  {
+    int populatedSquares = rows * cols * popDensity;
+    int r1, r2;
+    while (populatedSquares > 0)
+    {
+      r1 = rand() % rows;
+      r2 = rand() % cols;
+      if (!isOccupied(thisGen[r1][r2]))
+      {
+        thisGen[r1][r2] = 'X';
+        populatedSquares--;
+      }
+    }
+    for (int r = 0; r < rows; ++r)
+    {
+      for (int c = 0; c < cols; ++c)
+      {
+        cout << thisGen[r][c] << " ";
+      }
+      cout << endl;
+    }
+  }
