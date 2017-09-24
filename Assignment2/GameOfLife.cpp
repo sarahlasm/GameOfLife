@@ -1,3 +1,15 @@
+/**
+@TODO
+  Fix errors (see commit 9-23-17 - Error fixes for current errors)
+  Implement Mirror and Classic modes (does Amanda have that?)
+  Fill starting gameboard with random percentage of occupied cells
+  Allow person to input their own file
+  Kill Sarah
+  Write output to file if necessary
+  Check after every generation if simulation is static
+
+*/
+
 #include "GameMode.h"
 #include "Doughnut.h"
 
