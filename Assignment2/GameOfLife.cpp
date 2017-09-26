@@ -13,10 +13,7 @@
 #include "Doughnut.h"
 #include "Classic.h"
 #include "Mirror.h"
-<<<<<<< HEAD
 #include <iostream>
-=======
->>>>>>> origin/master
 #include <fstream>
 
 
