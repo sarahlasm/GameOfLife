@@ -44,7 +44,13 @@
 
     if ((col == 0 || col == getCols()-1) && (row == 0 || row == getRows()-1)) //Corner cases
     {
-      //Code that deals with it
+      if (row == 0)
+      {
+        if (col == 0)
+        {
+          //Do something. Help! Corners are hard.
+        }
+      }
     }
     else //This is very inefficient. Needs to be fixed. If we have time and don't die.
     {

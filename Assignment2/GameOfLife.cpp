@@ -13,6 +13,8 @@
 #include "Doughnut.h"
 #include "Classic.h"
 #include "Mirror.h"
+#include <iostream>
+#include <fstream>
 
 
   int main(int argc, char** argv)
@@ -23,6 +25,7 @@
     double popDensity;
     int rows = 0;
     int cols = 0;
+    string fileName;
     string mode;
 
     cout << "Do you want a random map file (r) or a file path (f)?" << endl;
@@ -35,6 +38,17 @@
       cin >> cols;
       cout << "Enter a decimal between 0 and 1 for population density." << endl;
       cin >> popDensity;
+    }
+    else if (mapOrFile == "f" || mapOrFile == "file")
+    {
+      cout << "File path?" << endl;
+      cin >> fileName;
+      string input;
+      ifstream inFile(fileName);
+      if (getline(inFile, input)) rows = stoi(input);
+      if (getline(inFile, input)) cols = stoi(input);
+      cout << rows << " " << cols << endl;
+      //Initialize array
     }
     cout << "What kind of mode do you want? Classic (c), doughnut (d), or mirror (m)?" << endl;
     cin >> mode;
