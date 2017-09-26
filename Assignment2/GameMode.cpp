@@ -5,11 +5,13 @@
    int genCount;
    int rows;
    int cols;
+   bool stable;
 
   GameMode::GameMode(const int ROWS, const int COLS)
   {
     rows = ROWS;
     cols = COLS;
+    stable = false;
 
     thisGen = new char*[ROWS];
     for (int i = 0; i < ROWS; ++i)
@@ -58,11 +60,20 @@
 
       }
     }
-    thisGen = nextGen;
-    nextGen = new char*[rows];
-    for (int i = 0; i < rows; ++i)
+
+    GameMode::compareGrid(thisGen, nextGen);
+
+    if (stable)
     {
-      nextGen[i] = new char[cols];
+    	cout << "Stable" << endl;
+    }
+
+    else
+    {
+       	thisGen = nextGen;
+    	nextGen = new char*[rows];
+    	for (int i = 0; i < rows; ++i)
+    		nextGen[i] = new char[cols];
     }
   }
 
@@ -118,4 +129,22 @@
       }
       cout << endl;
     }
+  }
+
+  void compareGrid(char** thisGen, char** nextGen) //true if the same
+  {
+  	for (int row = 0; row < rows; ++row)
+    {
+      for (int col = 0; col < cols; ++col)
+      {
+      	  if (thisGen[row][col] != nextGen[row][col])
+      	  	  stable = false;
+      }
+    }
+   stable = true;
+  }
+
+  bool getStable()
+  {
+  	  return stable;
   }
