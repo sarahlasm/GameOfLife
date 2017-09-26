@@ -14,19 +14,20 @@ class GameMode
     ~GameMode();
     virtual int checkNeighbors(int row, int col);
     void changeGrid();
+    void printBoard();
     bool isOccupied(char c);
     char** getThisGen();
     char** getNextGen();
     int getRows();
     int getCols();
     void setArray(int row, int col);
-    void setUpBoard(double popDensity);
     void compareGrid(char** thisGen, char** nextGen);
     bool getStable();
+    void setUpBoard(double popDensity);
   private:
     char** thisGen;
     char** nextGen;
-    //int genCount;
+    int genCount;
     int rows;
     int cols;
     bool stable;

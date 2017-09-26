@@ -4,7 +4,6 @@
   Fix Doughnut corner cases
   Allow person to input their own file
   Input exception handling
-  Kill Sarah
   Write output to file if necessary //kk
   Check after every generation if simulation is static //ye
 
@@ -15,7 +14,6 @@
 #include "Mirror.h"
 #include <iostream>
 #include <fstream>
-
 
   int main(int argc, char** argv)
   {
@@ -33,6 +31,8 @@
     string optOutput;
     string outputFile;
     bool yOutput;
+    string input;
+    ifstream inFile;
 
     cout << "Do you want a random map file (r) or a file path (f)?" << endl;
     cin >> mapOrFile;
@@ -49,23 +49,25 @@
     {
       cout << "File path?" << endl;
       cin >> fileName;
-      string input;
       ifstream inFile(fileName);
       if (getline(inFile, input)) rows = stoi(input);
       if (getline(inFile, input)) cols = stoi(input);
-      cout << rows << " " << cols << endl;
-      //Initialize array
     }
     cout << "What kind of mode do you want? Classic (c), doughnut (d), or mirror (m)?" << endl;
     cin >> mode;
 
-
     if (mode == "d" || mode == "doughnut")
+    {
       newGame = new Doughnut(rows, cols);
+    }
     else if (mode == "m" || mode == "mirror")
+    {
       newGame = new Mirror(rows, cols);
+    }
     else
+    {
       newGame = new Classic(rows, cols);
+    }
 
 
   	cout << "Do you want the simulation to run automatically (a) or for you to toggle (t) each generation using the enter key?" << endl;
@@ -107,6 +109,20 @@
 
     if (mapOrFile == "r" || mapOrFile == "random")
       (*newGame).setUpBoard(popDensity);
+     else if (mapOrFile == "f" || mapOrFile == "file")
+     {
+      int r = 0;
+      while (inFile >> input)
+      {
+          for (int c = 0; c < cols; ++c)
+          {
+            if (input[c] == 'X')
+              (*newGame).setArray(r,c);
+          }
+          r++;
+        }
+        (*newGame).printBoard();
+     }
 
   	while ((*newGame).getStable() == false)//initial pass at this
   	{
@@ -122,8 +138,6 @@
   		(*newGame).changeGrid();
   		++genCount;
   	}
-
-    delete newGame;
 
     return 0;
   }
