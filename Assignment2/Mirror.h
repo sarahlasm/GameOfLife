@@ -1,6 +1,6 @@
 #include "GameMode.h"
 
-class Mirror : GameMode
+class Mirror : public GameMode
 {
   public:
     Mirror (const int ROWS, const int COLS);

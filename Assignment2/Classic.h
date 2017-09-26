@@ -1,6 +1,6 @@
 #include "GameMode.h"
 
-class Classic : GameMode
+class Classic : public GameMode
 {
   public:
     Classic(const int ROWS, const int COLS);

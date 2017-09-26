@@ -2,8 +2,8 @@
 @TODO
   Make checkNeighbors() more efficient (at least in Doughnut)
   Fix Doughnut corner cases
-  Fill starting gameboard with random percentage of occupied cells
   Allow person to input their own file
+  Input exception handling
   Kill Sarah
   Write output to file if necessary
   Check after every generation if simulation is static
@@ -11,11 +11,13 @@
 */
 
 #include "Doughnut.h"
-
+#include "Classic.h"
+#include "Mirror.h"
 
 
   int main(int argc, char** argv)
   {
+    GameMode* newGame;
 
     string mapOrFile;
     double popDensity;
@@ -38,14 +40,19 @@
     cin >> mode;
 
 
-    Doughnut* d = new Doughnut(rows, cols);
-    (*d).setUpBoard(popDensity);
-    
+    if (mode == "d" || mode == "doughnut")
+      newGame = new Doughnut(rows, cols);
+    else if (mode == "m" || mode == "mirror")
+      newGame = new Mirror(rows, cols);
+    else
+      newGame = new Classic(rows, cols);
 
-    (*d).setArray(0, 3);
-    (*d).setArray(1, 5);
-    cout << (*d).checkNeighbors(0, 2);
-    delete d;
+    if (mapOrFile == "r" || mapOrFile == "random")
+      (*newGame).setUpBoard(popDensity);
+
+
+
+    delete newGame;
 
     return 0;
   }
