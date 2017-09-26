@@ -54,7 +54,7 @@ void GameMode::changeGrid()
     }
   }
 
-  //GameMode::compareGrid(thisGen, nextGen);
+  stable = GameMode::compareGrid(thisGen, nextGen);
 
   if (stable)
   {
@@ -124,7 +124,7 @@ void GameMode::setUpBoard(double popDensity)
   }
 }
 
-void GameMode::compareGrid(char** thisGen, char** nextGen) //true if the same
+bool GameMode::compareGrid(char** thisGen, char** nextGen) //true if the same
 {
   for (int row = 0; row < rows; ++row)
   {
@@ -132,12 +132,11 @@ void GameMode::compareGrid(char** thisGen, char** nextGen) //true if the same
     {
       if (thisGen[row][col] != nextGen[row][col])
       {
-        stable = false;
-        return;
+        return false;
       }
     }
   }
-  stable = true;
+  return true;
 }
 
 bool GameMode::getStable()

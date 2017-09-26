@@ -120,8 +120,8 @@
               (*newGame).setArray(r,c);
           }
           r++;
-        }
-        (*newGame).printBoard();
+      }
+    //  (*newGame).printBoard();
      }
 
   	while ((*newGame).getStable() == false)//initial pass at this
