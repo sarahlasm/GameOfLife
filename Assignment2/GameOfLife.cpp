@@ -14,6 +14,7 @@
 #include "Mirror.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
   int main(int argc, char** argv)
   {
@@ -33,6 +34,8 @@
     bool yOutput;
     string input;
     ifstream inFile;
+    bool doPause = false;
+    bool toggleToggle;
 
     cout << "Do you want a random map file (r) or a file path (f)?" << endl;
     cin >> mapOrFile;
@@ -69,33 +72,60 @@
       newGame = new Classic(rows, cols);
     }
 
+    while (toggleToggle == NULL) //god i hope this works
+    {
+    	cout << "Do you want the simulation to run automatically (a) or for you to toggle (t) each generation using the enter key?" << endl;
+    	cin >> autoOrNo;
 
-  	cout << "Do you want the simulation to run automatically (a) or for you to toggle (t) each generation using the enter key?" << endl;
-  	cin >> autoOrNo;
+      switch (autoOrNo) {
+        case "t":
+          toggleToggle = true;
+          break;
+        case "toggle":
+          toggleToggle = true;
+          break;
+        case "a":
+          toggleToggle = false;
+          break;
+        case "automatic":
+          toggleToggle = false;
+          break;
+        case "automatically":
+          toggleToggle = false;
+          break;
+        default:
+          cout << "Please enter a valid input" << endl;
+          break;
+      }
+    }
 
-  	if (autoOrNo == "t" || autoOrNo == "toggle")
-  	{
-  		//do this later
-  	}
-  	else
-  	{
+    while (doPause == NULL)
+    {
   		//ugh do a switch UGH
   		cout << "Do you want a pause between each generation? (y/n)" << endl;
   		cin >> pPause;
 
-  		if (pPause == "y" || pPause == "yes")
-  		{
-  			//do this later
-  		}
-
-  		else if (pPause == "n" || pPause == "no")
-  		{
-  			//do this later just skip it
-  		}
-
-  		else
-  			cout << "pls y or n" << endl;
-  	}
+      switch (pPause) {
+        case "y":
+          doPause = true;
+          break;
+        case "yes":
+          doPause = true;
+          break;
+        case "pause":
+          doPause = true;
+          break;
+        case "n":
+          doPause = false;
+          break;
+        case "no":
+          doPause = false;
+          break;
+        default:
+          cout << "Please enter a valid input" << endl;
+          break;
+        }
+      }
 
   	cout << "Do you want to output the results to another file? (y/n)" << endl;
   	cin >> optOutput;
