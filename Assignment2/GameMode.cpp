@@ -155,3 +155,8 @@ void GameMode::printBoard()
     cout << endl;
   }
 }
+
+int GameMode::getGenCount()
+{
+  return genCount;
+}

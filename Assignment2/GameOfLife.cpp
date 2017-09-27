@@ -41,6 +41,7 @@
     string outputTo;
     string outputFile;
     bool outputToggle;
+    ifstream inFile;
 
 
     while (checkpoints < 5)
@@ -58,7 +59,7 @@
           cout << "Enter a decimal between 0 and 1 for population density." << endl;
           cin >> popDensity; //check this
           ++checkpoints;
-          inputcheck = true;
+          inputCheck = true;
           break;
         }
         else if (mapOrFile == "f" || mapOrFile == "file")
@@ -69,7 +70,7 @@
           if (getline(inFile, input)) rows = stoi(input);
           if (getline(inFile, input)) cols = stoi(input);
           ++checkpoints;
-          inputcheck = true;
+          inputCheck = true;
           break;
         }
         else
@@ -109,7 +110,10 @@
           cout << "Please enter a valid input." << endl;
           continue;
         }
+
       }
+
+
       while (!outputCheck)
       {
         cout << "Would you like to output to a file? (y/n)" << endl;
@@ -117,7 +121,7 @@
         if (outputTo == "y" || outputTo == "yes")
         {
           cout << "Name of file?" << endl;
-          cin >> outputfile;
+          cin >> outputFile;
           ++checkpoints;
           outputToggle = true;
           outputCheck = true;
@@ -207,6 +211,8 @@
       }
     //  (*newGame).printBoard();
     }
+
+    int genCount = (*newGame).getGenCount();
 
     if (outputToggle)
     {

@@ -24,6 +24,7 @@ class GameMode
     bool compareGrid(char** thisGen, char** nextGen);
     bool getStable();
     void setUpBoard(double popDensity);
+    int getGenCount();
   private:
     char** thisGen;
     char** nextGen;
