@@ -110,7 +110,33 @@
           continue;
         }
       }
-      while (!enterCheck)
+      while (!outputCheck)
+      {
+        cout << "Would you like to output to a file? (y/n)" << endl;
+        cin >> outputTo;
+        if (outputTo == "y" || outputTo == "yes")
+        {
+          cout << "Name of file?" << endl;
+          cin >> outputfile;
+          ++checkpoints;
+          outputToggle = true;
+          outputCheck = true;
+          break;
+        }
+        else if (outputTo == "n" || outputTo == "no")
+        {
+          ++checkpoints;
+          outputToggle = false;
+          outputCheck = true;
+          break;
+        }
+        else
+        {
+          cout << "Please provide valid input." << endl;
+          continue;
+        }
+      }
+      while (!enterCheck && !outputToggle)
       {
         cout << "Would you like for the output to be automatic (a) or toggled (t)?" << endl;
         cin >> autoOrNo;
@@ -135,7 +161,7 @@
           continue;
         }
       }
-      while (!pauseCheck)
+      while (!pauseCheck && !outputToggle)
       {
         if (!enterToggle)
         {
@@ -163,38 +189,12 @@
           break;
         }
       }
-      while (!outputCheck)
-      {
-        cout << "Would you like to output to a file? (y/n)" << endl;
-        cin >> outputTo;
-        if (outputTo == "y" || outputTo == "yes")
-        {
-          cout << "Name of file?" << endl;
-          cin >> outputfile;
-          ++checkpoints;
-          outputToggle = true;
-          outputCheck = true;
-          break;
-        }
-        else if (outputTo == "n" || outputTo == "no")
-        {
-          ++checkpoints;
-          outputToggle = false;
-          outputCheck = true;
-          break;
-        }
-        else
-        {
-          cout << "Please provide valid input." << endl;
-          continue;
-        }
-      }
     }
 
     if (mapOrFile == "r" || mapOrFile == "random")
       (*newGame).setUpBoard(popDensity);
-     else if (mapOrFile == "f" || mapOrFile == "file")
-     {
+    else if (mapOrFile == "f" || mapOrFile == "file")
+    {
       int r = 0;
       while (inFile >> input)
       {
@@ -206,9 +206,86 @@
           r++;
       }
     //  (*newGame).printBoard();
-     }
+    }
 
-  	while ((*newGame).getStable() == false)//initial pass at this
+    if (outputToggle)
+    {
+      ofstream theOutputFile;
+      theOutputFile.open(outputFile);
+      theOutputFile << genCount;
+      while ((*newGame).getStable() == false && genCount < 500)//initial pass at this
+    	{
+    		theOutputFile << genCount;
+    		for (int row = 0; row < rows; ++row)
+    		{
+    			for (int col = 0; col < cols; ++col)
+    			{
+    				theOutputFile << (*newGame).getThisGen()[row][col];
+    			}
+    			theOutputFile << endl;
+    		}
+    		(*newGame).changeGrid();
+    		++genCount;
+    	}
+      theOutputFile.close();
+    }
+    else
+    {
+      if (enterToggle)
+      {
+        cout << "Press any key to toggle the next generation." << endl;
+        while ((*newGame).getStable() == false && genCount < 500)
+      	{
+      		cout << genCount;
+      		for (int row = 0; row < rows; ++row)
+      		{
+      			for (int col = 0; col < cols; ++col)
+      			{
+      				cout << (*newGame).getThisGen()[row][col];
+      			}
+      			cout << endl;
+      		}
+      		(*newGame).changeGrid();
+      		++genCount;
+          cin.ignore();
+      	}
+      }
+      else if (pauseToggle) //FIGURE OUT HOW TO IMPLEMENT THIS
+      {
+        while ((*newGame).getStable() == false && genCount < 500)
+      	{
+      		cout << genCount;
+      		for (int row = 0; row < rows; ++row)
+      		{
+      			for (int col = 0; col < cols; ++col)
+      			{
+      				cout << (*newGame).getThisGen()[row][col];
+      			}
+      			cout << endl;
+      		}
+      		(*newGame).changeGrid();
+      		++genCount;
+      	}
+      }
+      else
+      {
+        while ((*newGame).getStable() == false && genCount < 500)
+      	{
+      		cout << genCount;
+      		for (int row = 0; row < rows; ++row)
+      		{
+      			for (int col = 0; col < cols; ++col)
+      			{
+      				cout << (*newGame).getThisGen()[row][col];
+      			}
+      			cout << endl;
+      		}
+      		(*newGame).changeGrid();
+      		++genCount;
+        }
+      }
+    }
+  	/*while ((*newGame).getStable() == false)//initial pass at this
   	{
   		cout << genCount;
   		for (int row = 0; row < rows; ++row)
@@ -221,7 +298,7 @@
   		}
   		(*newGame).changeGrid();
   		++genCount;
-  	}
+  	}*/
     return 0;
 
   }
