@@ -53,11 +53,32 @@
         if (mapOrFile == "r" || mapOrFile == "random")
         {
           cout << "Number of rows?" << endl;
-          cin >> rows; //check this
+          cin >> rows;
+          while (cin.fail() || rows < 1)
+          {
+            cout << "Invalid input. Try again.\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+            cin >> rows;
+          }
           cout << "Number of columns?" << endl;
-          cin >> cols; //check this
+          cin >> cols;
+          while (cin.fail() || cols < 1)
+          {
+            cout << "Invalid input. Try again.\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+            cin >> cols;
+          }
           cout << "Enter a decimal between 0 and 1 for population density." << endl;
-          cin >> popDensity; //check this
+          cin >> popDensity;
+          while (cin.fail() || popDensity > 1 || popDensity < 0)
+          {
+            cout << "Invalid input. Try again.\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+            cin >> popDensity;
+          }
           ++checkpoints;
           inputCheck = true;
           break;
