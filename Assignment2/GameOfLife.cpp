@@ -230,7 +230,7 @@
           }
           r++;
       }
-    //  (*newGame).printBoard();
+      (*newGame).printBoard();
     }
 
     int genCount = (*newGame).getGenCount();
@@ -269,11 +269,15 @@
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
+              cout << "" << row << " " << col;
       			}
       			cout << endl;
       		}
+          cout << "Checkpoint 1\n";
       		(*newGame).changeGrid();
+          cout << "Checkpoint 2\n";
       		++genCount;
+          cout << "Checkpoint 3\n";
           cin.ignore();
       	}
       }
@@ -287,6 +291,7 @@
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
+              cout << "" << row << " " << col;
       			}
       			cout << endl;
       		}
@@ -304,6 +309,7 @@
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
+              cout << "" << row << " " << col;
       			}
       			cout << endl;
       		}
