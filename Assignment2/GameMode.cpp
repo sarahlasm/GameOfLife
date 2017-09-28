@@ -47,6 +47,7 @@ GameMode::~GameMode()
 {
   delete thisGen;
   delete nextGen;
+  cout << "object destroyed." << endl;
 }
 
 /**

@@ -2,9 +2,13 @@
 
 using namespace std;
 
+/**
+Inherits constructor from GameMode
+*/
 Mirror::Mirror (const int ROWS, const int COLS):GameMode(ROWS, COLS)
 {
-
+  (*this).ROWS = ROWS;
+  (*this).COLS = COLS;
 }
 
 Mirror::~Mirror()
@@ -12,6 +16,10 @@ Mirror::~Mirror()
 
 }
 
+/**
+checkNeighbors runs through the grid to count the neighbors of the particular cell
+Parameters row and col are the row and column of the current cell
+*/
 int Mirror::checkNeighbors(int row, int col)
 {
 

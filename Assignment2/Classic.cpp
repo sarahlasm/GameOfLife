@@ -5,6 +5,9 @@ using namespace std;
 int ROWS;
 int COLS;
 
+/**
+Inherits constructor from GameMode
+*/
 Classic::Classic (const int ROWS, const int COLS):GameMode(ROWS, COLS)
 {
   (*this).ROWS = ROWS;
@@ -16,6 +19,10 @@ Classic::~Classic()
 
 }
 
+/**
+checkNeighbors runs through the grid to count the neighbors of the particular cell
+Parameters row and col are the row and column of the current cell
+*/
 int Classic::checkNeighbors(int row, int col)
 {
 
