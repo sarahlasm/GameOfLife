@@ -17,6 +17,7 @@ Classic::~Classic()
 
 int Classic::checkNeighbors(int row, int col)
 {
+
   char** thisGen = getThisGen();
   int numNeighbors = 0;
 
