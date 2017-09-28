@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <unistd.h>
 
   int main(int argc, char** argv)
   {
@@ -190,7 +191,7 @@
       {
         if (!enterToggle)
         {
-          cout << "Would you like to have a pause (p) between each generation?" << endl;
+          cout << "Would you like to have a pause (p) between each generation, or no (n)?" << endl;
           cin >> pauseOrNo;
 
           if (pauseOrNo == "p" || pauseOrNo == "pause")
@@ -198,6 +199,11 @@
             pauseToggle = true;
             ++checkpoints;
             pauseCheck = true;
+            break;
+          }
+          else if (pauseOrNo == "n" || pauseOrNo == "no")
+          {
+            //IDK what to do here
             break;
           }
           else
@@ -228,13 +234,10 @@
       cout << input2;
       while (inFile2 >> input2)
       {
-        cout << "Checkpoint\n";
           for (int c = 0; c < cols; ++c)
           {
-            cout << "Checkpoint1\n";
             if (input2[c] == 'X')
             {
-              cout << "Checkpoint2\n";
               (*newGame).setArray(r,c);
             }
           }
@@ -270,7 +273,7 @@
     {
       if (enterToggle)
       {
-        cout << "Press any key to toggle the next generation." << endl;
+        cout << "Press enter to toggle the next generation." << endl;
         while ((*newGame).getStable() == false && genCount < 500)
       	{
       		cout << genCount << endl;
@@ -287,7 +290,7 @@
           cin.ignore();
       	}
       }
-      else if (pauseToggle) //FIGURE OUT HOW TO IMPLEMENT THIS
+      else if (pauseToggle) 
       {
         while ((*newGame).getStable() == false && genCount < 500)
       	{
@@ -302,6 +305,7 @@
       		}
       		(*newGame).changeGrid();
       		++genCount;
+          usleep(100000);
       	}
       }
       else
