@@ -1,3 +1,11 @@
+/**
+Sarah Lasman and Amanda Galemno
+2278776
+lasma101@mail.chapman.edu
+CS 350 Section 3
+Assignment #2
+*/
+
 #include "Doughnut.h"
 #include "Classic.h"
 #include "Mirror.h"
@@ -88,10 +96,12 @@ Deletes object and ends simulation after 500 generations or the board becomes st
           {
             if (getline(inFile, input)) rows = stoi(input);
             if (getline(inFile, input)) cols = stoi(input);
+            inFile.close();
           }
           catch (exception e)
           {
             cerr << "Your file is formatted incorrectly. Please edit the file and reload the program." << endl;
+            inFile.close();
             return -1;
           }
           inputCheck = true;
@@ -239,6 +249,7 @@ Deletes object and ends simulation after 500 generations or the board becomes st
           }
           r++;
       }
+      inFile2.close();
     }
 
     int genCount = (*newGame).getGenCount();
