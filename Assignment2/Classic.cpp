@@ -2,12 +2,13 @@
 
 using namespace std;
 
-const int ROWS = GameMode::getRows();
-const int COLS = GameMode::getCols();
+int ROWS;
+int COLS;
 
 Classic::Classic (const int ROWS, const int COLS):GameMode(ROWS, COLS)
 {
-
+  (*this).ROWS = ROWS;
+  (*this).COLS = COLS;
 }
 
 Classic::~Classic()
@@ -20,21 +21,27 @@ int Classic::checkNeighbors(int row, int col)
 
   char** thisGen = getThisGen();
   int numNeighbors = 0;
+  cout << "Checkpoint 1\n";
 
   if (row == 0)
   {
+    cout << "if1\n";
     if (col == 0)
     {
-      for (int i = 0; i < 2; ++row)
+      for (int r = 0; r < 2; ++r)
       {
-        for (int j = 0; j < 2; ++col)
+        for (int c = 0; c < 2; ++c)
         {
-          if (i == row && j == col)
-            continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          if (r == row && c == col)
+          {
+            cout << "If\n";
+            break;
+          }
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
+      cout << "Reached end of if. Yay!\n";
     }
 
     else if (col == COLS - 1)
@@ -68,6 +75,7 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (row == ROWS - 1)
   {
+    cout << "elif2\n";
     if (col == 0)
     {
       for (int i = ROWS - 2; i < ROWS; ++row)
@@ -113,6 +121,7 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (col == 0)
   {
+    cout << "elif3\n";
     if (row == 0)
     {
       for (int i = 0; i < 2; ++row)
@@ -158,6 +167,7 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (col == COLS - 1)
   {
+    cout << "elif4\n";
     if (row == 0)
     {
       for (int i = 0; i < 2; ++row)
@@ -203,6 +213,7 @@ int Classic::checkNeighbors(int row, int col)
 
   else
   {
+    cout << "else5\n";
     for (int i = row - 1; i < row + 2; ++i)
     {
        for (int j = col - 1; j < col + 2; ++j)
@@ -214,5 +225,6 @@ int Classic::checkNeighbors(int row, int col)
        }
     }
   }
+  cout << "Checkpoint\n";
   return numNeighbors;
 }
