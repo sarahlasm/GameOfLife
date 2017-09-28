@@ -7,8 +7,6 @@ Inherits constructor from GameMode
 */
 Mirror::Mirror (const int ROWS, const int COLS):GameMode(ROWS, COLS)
 {
-  (*this).ROWS = ROWS;
-  (*this).COLS = COLS;
 }
 
 Mirror::~Mirror()
@@ -286,6 +284,7 @@ int Mirror::checkNeighbors(int row, int col)
               numNeighbors += 2;
             else
               ++numNeighbors;
+          }
         }
       }
     }
