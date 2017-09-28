@@ -36,8 +36,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = 0; c < 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -55,8 +57,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = getCols() - 2; c < COLS; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -74,8 +78,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = col - 1; c < col + 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors++;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -96,8 +102,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = 0; c < 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -115,8 +123,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -134,8 +144,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = col - 1; c < col + 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors++;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -156,8 +168,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = 0; c < 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -175,8 +189,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = 0; c < 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -194,8 +210,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = 0; c < 2; ++c)
         {
-          if (r == row && c == col)
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
             numNeighbors++;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -216,8 +234,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (r == row && c == col)
-            numNeighbors++;
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
+            numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -235,8 +255,10 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (r == row && c == col)
-            numNeighbors++;
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
+            numNeighbors += 3;
+          else if (r == row && c == col)
+            continue;
           else if (GameMode::isOccupied(thisGen[r][c]))
           {
             if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
@@ -254,10 +276,16 @@ int Mirror::checkNeighbors(int row, int col)
       {
         for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
-            numNeighbors += 2;
-          else
-            ++numNeighbors;
+          if (r == row && c == col && GameMode::isOccupied(thisGen[r][c]))
+            numNeighbors++;
+          else if (r == row && c == col)
+            continue;
+          else if (GameMode::isOccupied(thisGen[r][c]))
+          {
+            if (r == 0 || c == COLS - 1 || r == ROWS - 1 || c == 0)
+              numNeighbors += 2;
+            else
+              ++numNeighbors;
         }
       }
     }
