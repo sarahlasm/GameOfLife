@@ -46,13 +46,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else if (col == COLS - 1)
     {
-      for (int i = 0; i < 2; ++row)
+      for (int r = 0; r < 2; ++r)
       {
-        for (int j = getCols() - 2; j < COLS; ++col)
+        for (int c = getCols() - 2; c < COLS; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -60,13 +60,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else
     {
-      for (int i = 0; i < 2; ++row)
+      for (int r = 0; r < 2; ++r)
       {
-        for (int j = col - 1; j < col + 2; ++col)
+        for (int c = col - 1; c < col + 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -78,13 +78,13 @@ int Classic::checkNeighbors(int row, int col)
     cout << "elif2\n";
     if (col == 0)
     {
-      for (int i = ROWS - 2; i < ROWS; ++row)
+      for (int r = ROWS - 2; r < ROWS; ++r)
       {
-        for (int j = 0; j < 2; ++col)
+        for (int c = 0; c < 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -92,13 +92,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else if (col == COLS - 1)
     {
-      for (int i = ROWS - 2; i < ROWS; ++row)
+      for (int r = ROWS - 2; r < ROWS; ++r)
       {
-        for (int j = COLS - 2; j < COLS; ++col)
+        for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -106,13 +106,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else
     {
-      for (int i = ROWS - 2; i < ROWS; ++row)
+      for (int r = ROWS - 2; r < ROWS; ++r)
       {
-        for (int j = col - 1; j < col + 2; ++col)
+        for (int c = col - 1; c < col + 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -124,13 +124,13 @@ int Classic::checkNeighbors(int row, int col)
     cout << "elif3\n";
     if (row == 0)
     {
-      for (int i = 0; i < 2; ++row)
+      for (int r = 0; r < 2; ++r)
       {
-        for (int j = 0; j < 2; ++col)
+        for (int c = 0; c < 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -138,13 +138,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else if (row == ROWS - 1)
     {
-      for (int i = ROWS - 2; i < ROWS; ++row)
+      for (int r = ROWS - 2; r < ROWS; ++r)
       {
-        for (int j = 0; j < 2; ++col)
+        for (int c = 0; c < 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -152,13 +152,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else
     {
-      for (int i = row - 1; i < row + 2; ++row)
+      for (int r = row - 1; r < row + 2; ++r)
       {
-        for (int j = 0; j < 2; ++col)
+        for (int c = 0; c < 2; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -170,13 +170,13 @@ int Classic::checkNeighbors(int row, int col)
     cout << "elif4\n";
     if (row == 0)
     {
-      for (int i = 0; i < 2; ++row)
+      for (int r = 0; r < 2; ++r)
       {
-        for (int j = COLS - 2; j < COLS; ++col)
+        for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -184,13 +184,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else if (row == ROWS - 1)
     {
-      for (int i = ROWS - 2; i < ROWS; ++row)
+      for (int r = ROWS - 2; r < ROWS; ++r)
       {
-        for (int j = COLS - 2; j < COLS; ++col)
+        for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -198,13 +198,13 @@ int Classic::checkNeighbors(int row, int col)
 
     else
     {
-      for (int i = row - 1; i < row + 2; ++row)
+      for (int r = row - 1; r < row + 2; ++r)
       {
-        for (int j = COLS - 2; j < COLS; ++col)
+        for (int c = COLS - 2; c < COLS; ++c)
         {
-          if (i == row && j == col)
+          if (r == row && c == col)
             continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
@@ -214,13 +214,13 @@ int Classic::checkNeighbors(int row, int col)
   else
   {
     cout << "else5\n";
-    for (int i = row - 1; i < row + 2; ++i)
+    for (int r = row - 1; r < row + 2; ++r)
     {
-       for (int j = col - 1; j < col + 2; ++j)
+       for (int c = col - 1; c < col + 2; ++c)
        {
-          if (i == row && j == col)
+          if (r == row && c == col)
              continue;
-          else if (GameMode::isOccupied(thisGen[i][j]))
+          else if (GameMode::isOccupied(thisGen[r][c]))
              ++numNeighbors;
        }
     }
