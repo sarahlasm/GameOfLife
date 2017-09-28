@@ -1,14 +1,3 @@
-/**
-@TODO
-  Make checkNeighbors() more efficient (at least in Doughnut)
-  Fix Doughnut corner cases
-  Allow person to input their own file
-  Input exception handling
-  Write output to file if necessary //kk
-  Check after every generation if simulation is static //ye
-
-*/
-
 #include "Doughnut.h"
 #include "Classic.h"
 #include "Mirror.h"
@@ -17,6 +6,13 @@
 #include <cstdlib>
 #include <unistd.h>
 
+/**
+Main method
+Asks user for input, and what game mode/file type/parameters/etc. they want
+Creates instance of their game type
+Prints gameboard each generation
+Deletes object and ends simulation after 500 generations or the board becomes stable
+*/
   int main(int argc, char** argv)
   {
     GameMode* newGame;
@@ -251,10 +247,9 @@
     {
       ofstream theOutputFile;
       theOutputFile.open(outputFile);
-      theOutputFile << genCount << endl;
       while ((*newGame).getStable() == false && genCount < 500)//initial pass at this
     	{
-    		theOutputFile << genCount;
+    		theOutputFile << genCount << endl;
     		for (int row = 0; row < rows; ++row)
     		{
     			for (int col = 0; col < cols; ++col)
