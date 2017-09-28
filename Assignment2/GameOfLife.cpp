@@ -297,7 +297,6 @@
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
-              cout << "" << row << " " << col;
       			}
       			cout << endl;
       		}
@@ -315,7 +314,7 @@
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
-              cout << "" << row << " " << col;
+
       			}
       			cout << endl;
       		}

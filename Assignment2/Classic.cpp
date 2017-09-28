@@ -21,11 +21,9 @@ int Classic::checkNeighbors(int row, int col)
 
   char** thisGen = getThisGen();
   int numNeighbors = 0;
-  cout << "Checkpoint 1\n";
 
   if (row == 0)
   {
-    cout << "if1\n";
     if (col == 0)
     {
       for (int r = 0; r < 2; ++r)
@@ -34,14 +32,12 @@ int Classic::checkNeighbors(int row, int col)
         {
           if (r == row && c == col)
           {
-            cout << "If\n";
             break;
           }
           else if (GameMode::isOccupied(thisGen[r][c]))
             ++numNeighbors;
         }
       }
-      cout << "Reached end of if. Yay!\n";
     }
 
     else if (col == COLS - 1)
@@ -75,7 +71,6 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (row == ROWS - 1)
   {
-    cout << "elif2\n";
     if (col == 0)
     {
       for (int r = ROWS - 2; r < ROWS; ++r)
@@ -121,7 +116,6 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (col == 0)
   {
-    cout << "elif3\n";
     if (row == 0)
     {
       for (int r = 0; r < 2; ++r)
@@ -167,7 +161,6 @@ int Classic::checkNeighbors(int row, int col)
 
   else if (col == COLS - 1)
   {
-    cout << "elif4\n";
     if (row == 0)
     {
       for (int r = 0; r < 2; ++r)
@@ -213,7 +206,6 @@ int Classic::checkNeighbors(int row, int col)
 
   else
   {
-    cout << "else5\n";
     for (int r = row - 1; r < row + 2; ++r)
     {
        for (int c = col - 1; c < col + 2; ++c)
@@ -225,6 +217,5 @@ int Classic::checkNeighbors(int row, int col)
        }
     }
   }
-  cout << "Checkpoint\n";
   return numNeighbors;
 }
