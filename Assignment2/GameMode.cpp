@@ -65,7 +65,6 @@ Creates new generation, changes pointer, checks if simulation is stable
 void GameMode::changeGrid()
 {
   int numNeighbors;
-  cout << "Checkpoint 1.1\n";
   for (int row = 0; row < rows; ++row)
   {
     for (int col = 0; col < cols; ++col)
@@ -80,11 +79,9 @@ void GameMode::changeGrid()
 
     }
   }
-  cout << "Checkpoint 1.2\n";
 
   stable = GameMode::compareGrid(thisGen, nextGen);
 
-  cout << "Checkpoint 1.3\n";
 
   if (stable)
   {
@@ -99,7 +96,6 @@ void GameMode::changeGrid()
     nextGen[i] = new char[cols];
   }
 
-  cout << "Checkpoint 1.4\n";
 }
 
 /**

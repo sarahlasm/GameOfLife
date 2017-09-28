@@ -220,13 +220,23 @@
       (*newGame).setUpBoard(popDensity);
     else if (mapOrFile == "f" || mapOrFile == "file")
     {
+      string input2;
+      ifstream inFile2(fileName);
       int r = 0;
-      while (inFile >> input)
+      inFile2 >> input2;
+      inFile2 >> input2;
+      cout << input2;
+      while (inFile2 >> input2)
       {
+        cout << "Checkpoint\n";
           for (int c = 0; c < cols; ++c)
           {
-            if (input[c] == 'X')
+            cout << "Checkpoint1\n";
+            if (input2[c] == 'X')
+            {
+              cout << "Checkpoint2\n";
               (*newGame).setArray(r,c);
+            }
           }
           r++;
       }
@@ -263,21 +273,17 @@
         cout << "Press any key to toggle the next generation." << endl;
         while ((*newGame).getStable() == false && genCount < 500)
       	{
-      		cout << genCount;
+      		cout << genCount << endl;
       		for (int row = 0; row < rows; ++row)
       		{
       			for (int col = 0; col < cols; ++col)
       			{
       				cout << (*newGame).getThisGen()[row][col];
-              cout << "" << row << " " << col;
       			}
       			cout << endl;
       		}
-          cout << "Checkpoint 1\n";
       		(*newGame).changeGrid();
-          cout << "Checkpoint 2\n";
       		++genCount;
-          cout << "Checkpoint 3\n";
           cin.ignore();
       	}
       }
@@ -285,7 +291,7 @@
       {
         while ((*newGame).getStable() == false && genCount < 500)
       	{
-      		cout << genCount;
+      		cout << genCount << endl;
       		for (int row = 0; row < rows; ++row)
       		{
       			for (int col = 0; col < cols; ++col)
@@ -303,7 +309,7 @@
       {
         while ((*newGame).getStable() == false && genCount < 500)
       	{
-      		cout << genCount;
+      		cout << genCount << endl;
       		for (int row = 0; row < rows; ++row)
       		{
       			for (int col = 0; col < cols; ++col)
