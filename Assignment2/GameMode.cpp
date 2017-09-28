@@ -1,11 +1,11 @@
 #include "GameMode.h"
 
-char** thisGen;
-char** nextGen;
-int genCount;
-int rows;
-int cols;
-bool stable;
+char** thisGen; //Current generation gameboard
+char** nextGen; //Next generation gameboard
+int genCount; //Current number of generations
+int rows; //Rows in the gameboard
+int cols; //Columns in the gameboard
+bool stable; //Is the array stable from last generation
 
 /**
 Constructor
@@ -71,11 +71,11 @@ void GameMode::changeGrid()
     {
       numNeighbors = checkNeighbors(row, col);
       if (numNeighbors == 2)
-      nextGen[row][col] = thisGen[row][col];
+        nextGen[row][col] = thisGen[row][col];
       else if (numNeighbors == 3)
-      nextGen[row][col] = 'X';
+        nextGen[row][col] = 'X';
       else
-      nextGen[row][col] = '-';
+        nextGen[row][col] = '-';
 
     }
   }
@@ -166,14 +166,6 @@ void GameMode::setUpBoard(double popDensity)
       thisGen[r1][r2] = 'X';
       populatedSquares--;
     }
-  }
-  for (int r = 0; r < rows; ++r)
-  {
-    for (int c = 0; c < cols; ++c)
-    {
-      cout << thisGen[r][c] << " ";
-    }
-    cout << endl;
   }
 }
 

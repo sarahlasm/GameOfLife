@@ -21,18 +21,18 @@
   {
     GameMode* newGame;
 
-    int checkpoints = 0;
+    bool allParametersEntered = false; //Checks to see if all file parameters (below) have been entered
     bool inputCheck = false;
     bool modeCheck = false;
     bool enterCheck = false;
     bool pauseCheck = false;
     bool outputCheck = false;
 
-    string mapOrFile = "";
+    string randomOrFile; //Is the input random, or from a file
     int rows = 0;
     int cols = 0;
     double popDensity = 0.0;
-    string fileName = "";
+    string fileName;
     string input;
     string mode;
     string autoOrNo;
@@ -45,13 +45,13 @@
     ifstream inFile;
 
 
-    while (checkpoints < 5)
+    while (!allParametersEntered)
     {
       while (!inputCheck)
       {
         cout << "Do you want a random map file (r) or a file path (f)?" << endl;
-        cin >> mapOrFile;
-        if (mapOrFile == "r" || mapOrFile == "random")
+        cin >> randomOrFile;
+        if (randomOrFile == "r" || randomOrFile == "random")
         {
           cout << "Number of rows?" << endl;
           cin >> rows;
@@ -80,18 +80,24 @@
             cin.ignore(256,'\n');
             cin >> popDensity;
           }
-          ++checkpoints;
           inputCheck = true;
           break;
         }
-        else if (mapOrFile == "f" || mapOrFile == "file")
+        else if (randomOrFile == "f" || randomOrFile == "file")
         {
           cout << "File path?" << endl;
           cin >> fileName;
           ifstream inFile(fileName);
-          if (getline(inFile, input)) rows = stoi(input);
-          if (getline(inFile, input)) cols = stoi(input);
-          ++checkpoints;
+          try
+          {
+            if (getline(inFile, input)) rows = stoi(input);
+            if (getline(inFile, input)) cols = stoi(input);
+          }
+          catch (exception e)
+          {
+            cerr << "Your file is formatted incorrectly. Please edit the file and reload the program." << endl;
+            return -1;
+          }
           inputCheck = true;
           break;
         }
@@ -109,21 +115,18 @@
         if (mode == "d" || mode == "doughnut")
         {
           newGame = new Doughnut(rows, cols);
-          ++checkpoints;
           modeCheck = true;
           break;
         }
         else if (mode == "m" || mode == "mirror")
         {
           newGame = new Mirror(rows, cols);
-          ++checkpoints;
           modeCheck = true;
           break;
         }
         else if (mode == "c" || mode == "classic")
         {
           newGame = new Classic(rows, cols);
-          ++checkpoints;
           modeCheck = true;
           break;
         }
@@ -144,14 +147,13 @@
         {
           cout << "Name of file?" << endl;
           cin >> outputFile;
-          ++checkpoints;
+          allParametersEntered = true;
           outputToggle = true;
           outputCheck = true;
           break;
         }
         else if (outputTo == "n" || outputTo == "no")
         {
-          ++checkpoints;
           outputToggle = false;
           outputCheck = true;
           break;
@@ -170,14 +172,13 @@
         if (autoOrNo == "a" || autoOrNo == "auto" || autoOrNo == "automatic")
         {
           enterToggle = false;
-          ++checkpoints;
           enterCheck = true;
           break;
         }
         else if (autoOrNo == "t" || autoOrNo == "toggle")
         {
           enterToggle = true;
-          ++checkpoints;
+          allParametersEntered = true;
           enterCheck = true;
           break;
         }
@@ -197,13 +198,13 @@
           if (pauseOrNo == "p" || pauseOrNo == "pause")
           {
             pauseToggle = true;
-            ++checkpoints;
+            allParametersEntered = true;
             pauseCheck = true;
             break;
           }
           else if (pauseOrNo == "n" || pauseOrNo == "no")
           {
-            //IDK what to do here
+            allParametersEntered = true;
             break;
           }
           else
@@ -214,7 +215,7 @@
         }
         else
         {
-          ++checkpoints;
+          allParametersEntered = true;
           pauseToggle = false;
           pauseCheck = true;
           break;
@@ -222,16 +223,15 @@
       }
     }
 
-    if (mapOrFile == "r" || mapOrFile == "random")
+    if (randomOrFile == "r" || randomOrFile == "random")
       (*newGame).setUpBoard(popDensity);
-    else if (mapOrFile == "f" || mapOrFile == "file")
+    else if (randomOrFile == "f" || randomOrFile == "file")
     {
       string input2;
       ifstream inFile2(fileName);
       int r = 0;
       inFile2 >> input2;
       inFile2 >> input2;
-      cout << input2;
       while (inFile2 >> input2)
       {
           for (int c = 0; c < cols; ++c)
@@ -243,7 +243,6 @@
           }
           r++;
       }
-      (*newGame).printBoard();
     }
 
     int genCount = (*newGame).getGenCount();
@@ -252,7 +251,7 @@
     {
       ofstream theOutputFile;
       theOutputFile.open(outputFile);
-      theOutputFile << genCount;
+      theOutputFile << genCount << endl;
       while ((*newGame).getStable() == false && genCount < 500)//initial pass at this
     	{
     		theOutputFile << genCount;
@@ -277,32 +276,18 @@
         while ((*newGame).getStable() == false && genCount < 500)
       	{
       		cout << genCount << endl;
-      		for (int row = 0; row < rows; ++row)
-      		{
-      			for (int col = 0; col < cols; ++col)
-      			{
-      				cout << (*newGame).getThisGen()[row][col];
-      			}
-      			cout << endl;
-      		}
+      		(*newGame).printBoard();
       		(*newGame).changeGrid();
       		++genCount;
           cin.ignore();
       	}
       }
-      else if (pauseToggle) 
+      else if (pauseToggle)
       {
         while ((*newGame).getStable() == false && genCount < 500)
       	{
       		cout << genCount << endl;
-      		for (int row = 0; row < rows; ++row)
-      		{
-      			for (int col = 0; col < cols; ++col)
-      			{
-      				cout << (*newGame).getThisGen()[row][col];
-      			}
-      			cout << endl;
-      		}
+      		(*newGame).printBoard();
       		(*newGame).changeGrid();
       		++genCount;
           usleep(100000);
@@ -313,34 +298,15 @@
         while ((*newGame).getStable() == false && genCount < 500)
       	{
       		cout << genCount << endl;
-      		for (int row = 0; row < rows; ++row)
-      		{
-      			for (int col = 0; col < cols; ++col)
-      			{
-      				cout << (*newGame).getThisGen()[row][col];
-
-      			}
-      			cout << endl;
-      		}
+      		(*newGame).printBoard();
       		(*newGame).changeGrid();
       		++genCount;
         }
       }
     }
-  	/*while ((*newGame).getStable() == false)//initial pass at this
-  	{
-  		cout << genCount;
-  		for (int row = 0; row < rows; ++row)
-  		{
-  			for (int col = 0; col < cols; ++col)
-  			{
-  				cout << (*newGame).getThisGen()[row][col];
-  			}
-  			cout << endl;
-  		}
-  		(*newGame).changeGrid();
-  		++genCount;
-  	}*/
+    delete newGame;
+  	if ((randomOrFile == "f" || randomOrFile == "file") && genCount <= 1)
+      cout << "If your results aren't what you expected, check to make sure your file is formatted properly!";
     return 0;
 
   }
