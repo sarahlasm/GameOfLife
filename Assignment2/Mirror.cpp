@@ -25,6 +25,8 @@ int Mirror::checkNeighbors(int row, int col)
 
   char** thisGen = getThisGen();
   int numNeighbors = 0;
+  int COLS = getCols();
+  int ROWS = getRows();
 
   if (row == 0)
   {
